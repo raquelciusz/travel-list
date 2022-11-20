@@ -1,11 +1,12 @@
 <div class="container">
+  <h1>Edit List Name</h1>
   <%= simple_form_for(@list) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
         <%= simple_form_for @list do |f| %>
-        <%= f.input :name, placeholder: 'Amazing Beach' %>
+        <%= f.input :name, placeholder: 'Drama' %>
         <%= f.submit class: 'btn btn-flat' %>
         <% end %>
     </div>

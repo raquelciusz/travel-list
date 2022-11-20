@@ -1,14 +1,20 @@
 <div class="container">
-  <h1>My lists</h1>
-  <ul>
-      <% @lists.each do |list| %>
-    <li>
-        <%= link_to list_path(list), class:"text-decoration-none" do %>
+  <h1 class="text-center"><strong>My lists</strong></h1>
+</div>
+
+<div class="container">
+  <div class="d-flex gap-2">
+    <% @lists.each do |list| %>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"> <%= list.name %></h5>
+      </div>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <%= link_to list_path(list), class:"btn btn-primary hover:text-primary " do %>
         <%= list.name %>
         <% end %>
-    </li>
-      <% end %>
-  </ul>
-
-  <%= link_to "Create a list", new_list_path, class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
 </div>

@@ -1,7 +1,22 @@
 <div class="container">
-  <h1> <%= @list.name %></h1>
-
-  <%= link_to "Back all lists <<", lists_path, class: "btn btn-primary" %>
-  <%= link_to "Delete", list_path(@list), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
-  <%= button_to "Destroy this list", @list, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-primary mt-3' %>
+    <h1 class="text-center"> <strong><%= @list.name.upcase %></strong></h1>
+    <%= link_to "Add country",  new_list_review_path(@list), class: 'text-decoration-none text-center' %>
+    <br>
+      <ul>
+      <% @list.countries.each do |country| %>
+      <% review = Review.find_by(list: @list, country: country) %>
+        <li class="list-unstyled">
+          <h5><strong><%= country.name %></strong>
+          <%= link_to review_path(review), method: :delete do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %></h5>
+          <%= country.reviews.last.comment %> <br>
+          <em><%= country.reviews.last.user_name %></em>
+        </li>
+      <% end %>
+      </ul>
+    <div class="d-flex gap-3">
+    <%= link_to "Destroy this list", @list, method: :delete, class: 'btn btn-primary mt-3' %>
+    <%= link_to "Update this list", edit_list_path(@list), class: 'btn btn-primary mt-3' %>
+    </div>
 </div>

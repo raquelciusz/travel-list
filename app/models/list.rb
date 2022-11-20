@@ -1,3 +1,6 @@
 class List < ApplicationRecord
-  has_one_attached :photo
+  has_many :reviews, dependent: :destroy
+  has_many :countries, through: :reviews, dependent: :destroy
+
+  validates :name, presence: true, uniqueness: true
 end
